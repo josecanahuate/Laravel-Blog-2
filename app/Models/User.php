@@ -76,8 +76,20 @@ class User extends Authenticatable
         return $this->hasMany(Video::class);
     }
 
+    //relacion uno a muchos polimorfica de users a comments
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+    
     //relacion muchos a muchos entre las tablas users y roles
     public function roles(){
         return $this->belongsToMany(Role::class);
     }
+
+   //relacion uno a uno polimorfica de users a images
+   public function image() {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    
 }
